@@ -1,10 +1,15 @@
+import Layout from "./components/layout";
+import Profile from "./components/Profile";
 
-
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1>Olá</h1>
-    </div>
+    <main className="App">
+      <Layout>
+        <Profile />
+        <div>Repositories</div>
+        <div>Starreds</div>
+      </Layout>
+    </main>
   );
 }
 
