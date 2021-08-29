@@ -1,4 +1,4 @@
-import Layout from "./components/layout";
+import Layout from "./components/Layout";
 import Profile from "./components/Profile";
 import { ResetCSS } from "./global/resetCSS";
 import Repositories from "./components/Repositories";
