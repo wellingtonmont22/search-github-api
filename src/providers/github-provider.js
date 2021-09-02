@@ -9,6 +9,7 @@ export const GitHubContext = createContext({
 
 const GithubProvider = ({ children }) => {
   const [githubState, setGithubState] = useState({
+    hasUser: false,
     loading: false,
     user: {
       avatar: undefined,
@@ -27,29 +28,39 @@ const GithubProvider = ({ children }) => {
     starred: [],
   });
 
-  const getUser = async (username) => {
+  const getUser = (username) => {
+    setGithubState((prevState) => ({
+      ...prevState,
+      loading: !prevState.loading,
+    }));
+
     api
       .get(`/users/${username}`)
-      .then(
-        ({ data }) => {
-          setGithubState((prevState) => ({
-            ...prevState,
-            user: {
-              avatar: data.avatar_url,
-              login: data.login,
-              name: data.name,
-              html_url: data.html_url,
-              blog: data.blog,
-              location: data.location,
-              company: data.company,
-              followers: data.followers,
-              following: data.following,
-              public_gists: data.public_gists,
-              public_repos: data.public_repos,
-            },
-          }));
-        }
-      );
+      .then(({ data }) => {
+        setGithubState((prevState) => ({
+          ...prevState,
+          hasUser: true,
+          user: {
+            avatar: data.avatar_url,
+            login: data.login,
+            name: data.name,
+            html_url: data.html_url,
+            blog: data.blog,
+            location: data.location,
+            company: data.company,
+            followers: data.followers,
+            following: data.following,
+            public_gists: data.public_gists,
+            public_repos: data.public_repos,
+          },
+        }));
+      })
+      .finally(() => {
+        setGithubState((prevState) => ({
+          ...prevState,
+          loading: !prevState.loading,
+        }));
+      });
   };
 
   const contextValue = {
