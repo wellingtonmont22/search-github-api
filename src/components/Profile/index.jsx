@@ -6,7 +6,7 @@ const Profile = () => {
   const { githubState } = useGithub();
 
   useEffect(() => {
-    console.log(githubState.user);
+    
   }, [githubState.user]);
 
   return (
