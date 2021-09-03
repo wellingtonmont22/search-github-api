@@ -1,8 +1,9 @@
 import Layout from "./components/Layout";
 import Profile from "./components/Profile";
 import Repositories from "./components/Repositories";
-import useGithub from "./hooks/github-hooks";
 import Loader from "./components/Loader";
+import NoSearch from "./components/NoSearch";
+import useGithub from "./hooks/github-hooks";
 
 const App = () => {
   const { githubState } = useGithub();
@@ -20,7 +21,7 @@ const App = () => {
           )}
         </>
       ) : (
-        <h1>Não foi feita nenhuma pesquisa!</h1>
+        <NoSearch />
       )}
     </Layout>
   );
