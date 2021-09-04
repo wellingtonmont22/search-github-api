@@ -1,20 +1,23 @@
-import React from "react";
+import React, { memo } from "react";
 import propTypes from "prop-types";
+import * as S from "./styled";
 
 const RepositoryItem = ({ name, linkToRepo, fullName }) => {
   return (
-    <div>
-      <h2>{name}</h2>
-      <h4>full name:</h4>
-      <a href={linkToRepo} target="_blank" rel="noreferrer">{fullName}</a>
-    </div>
+    <S.Card>
+      <S.Title>{name}</S.Title>
+      <S.Label>link:</S.Label>
+      <S.Link href={linkToRepo} target="_blank" rel="noreferrer">
+        {fullName}
+      </S.Link>
+    </S.Card>
   );
 };
 
 RepositoryItem.propTypes = {
   name: propTypes.string,
   linkToRepo: propTypes.string,
-  fullName: propTypes.string
+  fullName: propTypes.string,
 };
 
-export default RepositoryItem;
+export default memo(RepositoryItem);
