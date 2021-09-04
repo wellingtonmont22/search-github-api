@@ -44,7 +44,7 @@ const Repositories = () => {
                 <RepositoryItem
                   key={item.id}
                   name={item.name}
-                  linkToRepo={item.url}
+                  linkToRepo={item.html_url}
                   fullName={item.full_name}
                 />
               ))}
