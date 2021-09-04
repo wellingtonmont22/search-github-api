@@ -1,4 +1,4 @@
-import Layout from "./components/Layout";
+import Layout from "./components/layout";
 import Profile from "./components/Profile";
 import Repositories from "./components/Repositories";
 import Loader from "./components/Loader";
