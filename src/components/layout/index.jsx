@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
 };
 
 Layout.propTypes = {
-  children: propTypes.element
-}
+  children: propTypes.element,
+};
 
 export default Layout;
