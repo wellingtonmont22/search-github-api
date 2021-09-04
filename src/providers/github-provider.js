@@ -12,6 +12,7 @@ const GithubProvider = ({ children }) => {
     hasUser: false,
     loading: false,
     user: {
+      id: undefined,
       avatar: undefined,
       login: undefined,
       name: undefined,
@@ -41,6 +42,7 @@ const GithubProvider = ({ children }) => {
           ...prevState,
           hasUser: true,
           user: {
+            id: data.id,
             avatar: data.avatar_url,
             login: data.login,
             name: data.name,
@@ -63,9 +65,31 @@ const GithubProvider = ({ children }) => {
       });
   };
 
+  const getUserRepos = (username) => {
+    api.get(`users/${username}/repos`).then(({ data }) => {
+      
+      setGithubState((prevState) => ({
+        ...prevState,
+        repositories: data,
+      }));
+    });
+  };
+
+  const getUserStarred = (username) => {
+    api.get(`users/${username}/starred`).then(({ data }) => {
+      
+      setGithubState((prevState) => ({
+        ...prevState,
+        starred: data,
+      }));
+    });
+  };
+
   const contextValue = {
     githubState,
     getUser: useCallback((username) => getUser(username), []),
+    getUserRepos: useCallback((username) => getUserRepos(username), []),
+    getUserStarred: useCallback((username) => getUserStarred(username), []),
   };
 
   return (
