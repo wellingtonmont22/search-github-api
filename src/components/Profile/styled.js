@@ -34,6 +34,10 @@ export const WrapperStatusCount = styled.div`
         margin: 8px;
         text-align: center;
     }
+    @media screen and (max-width:700px){
+        display: grid;
+        grid-template-columns: 80px 80px;
+    }
 `;
 export const WrapperGeneric = styled.div`
     display: flex;
